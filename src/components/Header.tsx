@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { theme } from "../styles/theme";
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  background-color: ${theme.colors.blue};
 `;
 
 const Header = () => (
