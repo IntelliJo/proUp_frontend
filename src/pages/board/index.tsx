@@ -45,48 +45,6 @@ const boardFree = () => {
               <div>username</div>
             </FlexNumStyle>
           </ArticleStyle>
-          <ArticleStyle>
-            <FlexNumStyle flexNum="2">Article Title</FlexNumStyle>
-            <FlexNumStyle flexNum="1">
-              <div className="bor">create date</div>
-              <div>username</div>
-            </FlexNumStyle>
-          </ArticleStyle>
-          <ArticleStyle>
-            <FlexNumStyle flexNum="2">Article Title</FlexNumStyle>
-            <FlexNumStyle flexNum="1">
-              <div className="bor">create date</div>
-              <div>username</div>
-            </FlexNumStyle>
-          </ArticleStyle>
-          <ArticleStyle>
-            <FlexNumStyle flexNum="2">Article Title</FlexNumStyle>
-            <FlexNumStyle flexNum="1">
-              <div className="bor">create date</div>
-              <div>username</div>
-            </FlexNumStyle>
-          </ArticleStyle>
-          <ArticleStyle>
-            <FlexNumStyle flexNum="2">Article Title</FlexNumStyle>
-            <FlexNumStyle flexNum="1">
-              <div className="bor">create date</div>
-              <div>username</div>
-            </FlexNumStyle>
-          </ArticleStyle>
-          <ArticleStyle>
-            <FlexNumStyle flexNum="2">Article Title</FlexNumStyle>
-            <FlexNumStyle flexNum="1">
-              <div className="bor">create date</div>
-              <div>username</div>
-            </FlexNumStyle>
-          </ArticleStyle>
-          <ArticleStyle>
-            <FlexNumStyle flexNum="2">Article Title</FlexNumStyle>
-            <FlexNumStyle flexNum="1">
-              <div className="bor">create date</div>
-              <div>username</div>
-            </FlexNumStyle>
-          </ArticleStyle>
         </div>
       </div>
     </Layout>
