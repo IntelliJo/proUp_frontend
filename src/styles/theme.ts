@@ -6,4 +6,5 @@ export const theme: DefaultTheme = {
     white: "#ffffff",
     orange: "#eb7952",
   },
+  marginSide: "10px",
 };

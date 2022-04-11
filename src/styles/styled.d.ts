@@ -7,5 +7,6 @@ declare module "styled-components" {
       white: string;
       orange: string;
     };
+    marginSide: string;
   }
 }
