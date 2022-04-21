@@ -8,5 +8,9 @@ declare module "styled-components" {
       bgColor: string;
     };
     marginSide: string;
+    origin: {
+      width: string;
+      height: string;
+    };
   }
 }

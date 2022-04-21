@@ -17,3 +17,11 @@ export interface ColorTS {
   value: string;
   color: string;
 }
+
+export interface ProjectTS {
+  name: string;
+  content: string;
+  info: string;
+  language: string;
+  rating: string;
+}

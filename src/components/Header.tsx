@@ -10,10 +10,11 @@ const HeaderStyle = styled.header`
 
 const Header = () => (
   <HeaderStyle>
-    <span>로고</span>
+    <span>proUp</span>
     <div>
-      <span>유저사진</span>
-      <span>메뉴버튼</span>
+      <span>프로젝트 등록</span>
+      <span>알림</span>
+      <span>로그인</span>
     </div>
   </HeaderStyle>
 );
