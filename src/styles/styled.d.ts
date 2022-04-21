@@ -3,9 +3,9 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      black: string;
-      white: string;
-      orange: string;
+      red: string;
+      green: string;
+      bgColor: string;
     };
     marginSide: string;
   }

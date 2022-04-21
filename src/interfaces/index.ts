@@ -5,6 +5,15 @@
 // import { User } from 'path/to/interfaces';
 
 export type User = {
-  id: number
-  name: string
+  id: number;
+  name: string;
+};
+
+export interface SizeTS {
+  size: string;
+}
+export interface ColorTS {
+  type: string;
+  value: string;
+  color: string;
 }

@@ -1,8 +1,12 @@
 import Layout from "../components/Layout";
 import styled from "styled-components";
+import { theme } from "../styles/theme";
+import Image from "next/image";
+import java from "../../public/img/java.png";
+import mainImg from "../../public/img/main.png";
 
 const SearchStyle = styled.div`
-  background-color: #dad9ff;
+  background-color: ${theme.colors.bgColor};
   height: 320px;
 `;
 const CenterS = styled.div`
@@ -29,6 +33,7 @@ const ListStyle = styled.div`
   margin: 10px;
   display: inline-block;
   width: 50px;
+  height: 50px;
 `;
 
 const ProjectsStyle = styled.div`
@@ -62,17 +67,21 @@ const SubtitleStyle = styled(TitleStyle)`
   padding-left: 5px;
   height: 100%;
 `;
+
 const IndexPage = () => (
   <Layout title="proUp">
     <div>
       <SearchStyle className="search">
         <CenterS>
+          <Image src={mainImg} width={100} height={100} alt="mainImg" />
           <InputStyle type="text"></InputStyle>
         </CenterS>
       </SearchStyle>
       <MainStyle className="main">
         <FilterStyle className="filter">
-          <ListStyle>프레임워크</ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
           <ListStyle>프레임워크</ListStyle>
           <ListStyle>프레임워크</ListStyle>
           <ListStyle>프레임워크</ListStyle>

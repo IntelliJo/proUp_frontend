@@ -7,9 +7,10 @@ const TitleStyle = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const TitleFontStyle = styled.div`
 font-size: 1.5em;
-    font-weight: bold;
+font-weight: bold;
 }`;
 const ArticleStyle = styled.div`
     display: flex;
