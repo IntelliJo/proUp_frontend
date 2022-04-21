@@ -9,26 +9,25 @@ const TitleStyle = styled.div`
 `;
 
 const TitleFontStyle = styled.div`
-font-size: 1.5em;
-font-weight: bold;
-}`;
+  font-size: 1.5em;
+  font-weight: bold;
+`;
 const ArticleStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 ${(props) => props.theme.marginSide} 25px;
-    height: 2.8em;
-    background-color: gainsboro;
-    border-radius: 1em;
-    padding: 0 1em;
-  }`;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 ${(props) => props.theme.marginSide} 25px;
+  height: 2.8em;
+  background-color: gainsboro;
+  border-radius: 1em;
+  padding: 0 1em;
+`;
 
 const FlexNumStyle = styled.div<{ flexNum: string }>`
-  display:flex;
+  display: flex;
   flex: ${(props) => props.flexNum};
   justify-content: ${(props) => (props.flexNum === "1" ? "space-around" : "none")};
-  
-  }`;
+`;
 
 const boardFree = () => {
   return (
