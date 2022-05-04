@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import styled from "styled-components";
-import Image from "next/image";
 
 const CenterS = styled.div`
   display: flex;

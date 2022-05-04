@@ -38,7 +38,8 @@ const Header = () => {
       <span>알림</span>
       <span onClick={onClickModalOn}>로그인</span>
       <Modal visible={isActive} closeEvent={onClickModalOff}>
-        <LoginPopup closeEvent={onClickModalOff} actionEvent={onClickModalRemove}></LoginPopup>
+        {/* <LoginPopup closeEvent={onClickModalOff} actionEvent={onClickModalRemove}></LoginPopup> */}
+        <LoginPopup></LoginPopup>
       </Modal>
     </div>
   </HeaderStyle>

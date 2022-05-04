@@ -56,29 +56,7 @@ function Modal ({visible, closeEvent, children} : Props) {
       </PopupOverlay>
     </>
   );
-  // const openPopup = () => {
-  //   const [isVisible, setIsVisible] = useState(false)
-  
-  //   const onClickPopupOn = () => {
-  //     setIsVisible(true);
-  //   }
-  //   const onClickPopupOff = () => {
-  //     setIsVisible(false);
-  //   }
-  // }
-  
-  // return (
-  //   <>
-  //     <PopupOverlay visible={visible}/>
-  //     <PopupWrapper className="로그인" tabIndex={-1} visible={visible}>
-  //       <PopupInner tabIndex={0} className="popup-inner">
-  //         팝업예시
-  //         {children}
-  //       </PopupInner>
-  //     </PopupWrapper>
-  //   </>
-  // )
-};
+}
 
 const PopupOverlay = styled.div<{visible: boolean}>`
   box-sizing: border-box;
