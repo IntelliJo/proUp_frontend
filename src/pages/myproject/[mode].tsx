@@ -12,7 +12,7 @@ let projects = [
   },
 ];
 
-const MyProject = () => {
+const Model = () => {
   return (
     <Layout title="myproject">
       <div>{title}</div>
@@ -27,4 +27,4 @@ const MyProject = () => {
   );
 };
 
-export default MyProject;
+export default Model;
