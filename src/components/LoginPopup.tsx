@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Link from "next/link";
+import Link from 'next/link';
 
 export type LoginModalProps = {
   visible?: boolean;
@@ -8,7 +8,8 @@ export type LoginModalProps = {
   actionEvent?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const LoginPopup = ({ closeEvent, children, actionEvent }: LoginModalProps) => {
+// const LoginPopup = ({ closeEvent, children, actionEvent }: LoginModalProps) => {
+const LoginPopup = () => {
   return (
     <>
       <LoginPopupContainer>

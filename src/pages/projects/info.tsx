@@ -67,7 +67,7 @@ const DevAnnual = styled.span`
   font-weight: bold;
 `
 
-const Matching = () => {
+const Info = () => {
   return (
     <Layout title="신청자 목록">
       <div>
@@ -108,4 +108,4 @@ const Matching = () => {
   )
 }
 
-export default Matching
+export default Info
