@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import Project from "../../components/Project";
 

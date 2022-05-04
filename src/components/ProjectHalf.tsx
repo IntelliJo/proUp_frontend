@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ProjectTS, SizeTS } from "../interfaces/index";
+import { ProjectTS } from "../interfaces/index";
 
 const ProjectStyle = styled.div<sizeTS>`
   margin: 5px 10px;
