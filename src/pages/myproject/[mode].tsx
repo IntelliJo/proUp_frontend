@@ -12,7 +12,7 @@ let projects = [
   },
 ];
 
-const Model = () => {
+const Mode = () => {
   return (
     <Layout title="myproject">
       <div>{title}</div>
@@ -27,4 +27,4 @@ const Model = () => {
   );
 };
 
-export default Model;
+export default Mode;

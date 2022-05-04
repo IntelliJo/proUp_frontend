@@ -13,7 +13,8 @@ const CenterS = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 180px 0;
+  padding: 100px 0;
+  flex-direction: column;
 `;
 const InputStyle = styled.input`
   border-radius: 15px;
@@ -73,7 +74,7 @@ const IndexPage = () => (
     <div>
       <SearchStyle className="search">
         <CenterS>
-          <Image src={mainImg} width={100} height={100} alt="mainImg" />
+          <Image src={mainImg} width={400} height={100} alt="mainImg" />
           <InputStyle type="text"></InputStyle>
         </CenterS>
       </SearchStyle>
@@ -82,15 +83,27 @@ const IndexPage = () => (
           <ListStyle>
             <Image src={java} width={100} height={100} alt="java" />
           </ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
-          <ListStyle>프레임워크</ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
+          <ListStyle>
+            <Image src={java} width={100} height={100} alt="java" />
+          </ListStyle>
         </FilterStyle>
         <ProjectsStyle className="projects">
           {/* 프로젝트 시작 */}
