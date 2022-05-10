@@ -1,5 +1,8 @@
 import Layout from "../components/Layout";
 import styled from "styled-components";
+import useInput from "../hooks/useInput";
+import { useEffect, useState } from "react";
+import Router from "next/router";
 
 const CenterS = styled.div`
   display: flex;
@@ -49,7 +52,7 @@ const InputDetailStyle = styled.input`
   /* padding:14px 0; */
   /* transition:border-bottom .3s; */
 `;
-const InputEmailStyle = styled.input`
+const InputWithButton = styled.input`
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -65,7 +68,7 @@ const InputLabelStyle = styled.label`
   font-size: 1em;
   font-weight: bold;
 `;
-const InputEmailButton = styled.button`
+const ButtonWithInput = styled.button`
   width: 23%;
   margin-left: 10px;
 `;
@@ -99,6 +102,74 @@ const SampleImage = styled.div`
 `;
 
 const RegisterPage = () => {
+
+  const userId = useInput('')
+  const userPw = useInput('')
+  const userPhone = useInput('')
+  const userEmail = useInput('')
+  const authNum = useInput('')
+
+  const [isIdCheck, setIdCheck] = useState(false) // id 중복확인이 됐는지 체크
+  const [pwCheck, setPwCheck] = useState()        // 비밀번호 확인 input
+  const [isPwError,setPwError] = useState(false)  // 비밀번호 / 비밀번호 확인이 같은지 체크
+  
+  const [isExist, setIsExist] = useState(false)   // 입력한 아이디가 중복인지 체크
+
+  const checkDuplicateId = async () => {
+    const checkId:string = userId.value
+    console.log(checkId.length);
+    if(checkId.length < 5) {
+      alert('아이디는 6자 이상이어야 합니다.')
+    } else {
+      const {results}  =  await (await fetch(`/user/${checkId}`)).json();
+      console.log(results)
+      // TODO : API 나온 후 수정 필요
+      if(results === '' || results === undefined) {
+        setIsExist(true);
+      } else {
+        setIsExist(false)
+      }
+      if(isExist){
+        alert('중복된 아이디입니다.')
+      } else {
+        alert('사용 가능한 아이디 입니다.')
+        setIdCheck(true);
+      }
+    }
+  }
+
+  const handlePw =(e) => {
+    const {value}:any={...e.target}
+    setPwError(userPw.value !== value) //같으면 false 다르면 true
+    setPwCheck(value)
+  }
+
+  const validateUser = () => {
+    // TODO : API 나온 후 수정 필요
+    if(!isIdCheck) {
+      alert('아이디 중복체크를 해주세요.')
+    } else if (userPw.value === '' || pwCheck === undefined || isPwError){
+      alert('비밀번호를 확인해주세요.')
+    } else if (userPhone.value === '') {
+      alert('전화번호를 확인해주세요.')
+    } else if (userEmail.value === '') {
+      alert('이메일을 확인해주세요.')
+    } else if (authNum.value === '') {
+      alert('인증번호를 확인해주세요.')
+    } else {
+      console.log(
+        'userId : ', userId.value ,
+        'userPw : ', userPw.value ,
+        'userPhone : ', userPhone.value ,
+        'userEmail : ', userEmail.value ,
+        'pwCheck  : ', pwCheck
+      )
+      alert('회원가입이 완료되었습니다.')
+      Router.push('/'); 
+      // window.open('/', '_self') 뭐가 나을지 나중에 확인
+    }
+  }
+
   return (
     <Layout title="회원가입">
       <div>
@@ -113,29 +184,33 @@ const RegisterPage = () => {
         <InputBaseStyle>
           <InputSpanStyle>
             <InputLabelStyle>아이디</InputLabelStyle>
-            <InputDetailStyle type="text" />
+            <br/>
+            <InputWithButton type="text" readOnly={isIdCheck} {...userId} />
+            <ButtonWithInput onClick={checkDuplicateId} disabled={isIdCheck}>중복 확인</ButtonWithInput>
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>비밀번호</InputLabelStyle>
-            <InputDetailStyle type="password" />
+            <InputDetailStyle type="password" {...userPw} />
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>비밀번호확인</InputLabelStyle>
-            <InputDetailStyle type="password" />
+            <InputDetailStyle type="password" value={pwCheck||''} onChange={handlePw} onFocus={handlePw} onBlur={handlePw}/>
+            {isPwError && <div style={{color:'red'}}>비밀번호가 일치하지 않습니다.</div>}
+            <br/>
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>전화번호</InputLabelStyle>
-            <InputDetailStyle type="text" />
+            <InputDetailStyle type="tel" {...userPhone}/>
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>이메일</InputLabelStyle>
             <br></br>
-            <InputEmailStyle type="text" />
-            <InputEmailButton>인증번호 발송</InputEmailButton>
+            <InputWithButton type="text" {...userEmail}/>
+            <ButtonWithInput>인증번호 발송</ButtonWithInput>
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>인증번호</InputLabelStyle>
-            <InputDetailStyle type="text" />
+            <InputDetailStyle type="text" {...authNum}/>
           </InputSpanStyle>
           <EzRegisterLabel>
             <span>간편 회원가입</span>
@@ -146,7 +221,7 @@ const RegisterPage = () => {
             <SampleImage />
           </ImageBase>
 
-          <InputButton>회원가입</InputButton>
+          <InputButton onClick={validateUser}>회원가입</InputButton>
         </InputBaseStyle>
       </div>
     </Layout>

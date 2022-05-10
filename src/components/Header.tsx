@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "../styles/theme";
-import LoginPopup from "./LoginPopup";
+import LoginPopup from "./users/LoginPopup";
 import Modal from "./Modal";
 import React, { useState } from 'react';
 
@@ -39,7 +39,7 @@ const Header = () => {
       <span onClick={onClickModalOn}>로그인</span>
       <Modal visible={isActive} closeEvent={onClickModalOff}>
         {/* <LoginPopup closeEvent={onClickModalOff} actionEvent={onClickModalRemove}></LoginPopup> */}
-        <LoginPopup></LoginPopup>
+        <LoginPopup/>
       </Modal>
     </div>
   </HeaderStyle>
