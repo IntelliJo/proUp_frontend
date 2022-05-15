@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../styles/theme";
 import LoginPopup from "./LoginPopup";
 import Modal from "./Modal";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const HeaderStyle = styled.header`
   background-color: ${theme.colors.bgColor};
@@ -15,7 +15,6 @@ const HeaderStyle = styled.header`
 `;
 
 const Header = () => {
-
   const [isActive, setIsActive] = useState(false);
 
   const onClickModalOn = () => {
@@ -27,24 +26,23 @@ const Header = () => {
   };
 
   const onClickModalRemove = () => {
-    alert('이벤트 실행');
+    alert("이벤트 실행");
   };
-  
-  return(
+
+  return (
     <HeaderStyle>
-    <span>proUp</span>
-    <div>
-      <Link href="#">프로젝트 등록</Link>
-      <span>알림</span>
-      <span onClick={onClickModalOn}>로그인</span>
-      <Modal visible={isActive} closeEvent={onClickModalOff}>
-        {/* <LoginPopup closeEvent={onClickModalOff} actionEvent={onClickModalRemove}></LoginPopup> */}
-        <LoginPopup></LoginPopup>
-      </Modal>
-    </div>
-  </HeaderStyle>
-  )
-  
+      <span>proUp</span>
+      <div>
+        <Link href="/projects/regist">프로젝트 등록</Link>
+        <span>알림</span>
+        <span onClick={onClickModalOn}>로그인</span>
+        <Modal visible={isActive} closeEvent={onClickModalOff}>
+          {/* <LoginPopup closeEvent={onClickModalOff} actionEvent={onClickModalRemove}></LoginPopup> */}
+          <LoginPopup></LoginPopup>
+        </Modal>
+      </div>
+    </HeaderStyle>
+  );
 };
 
 export default Header;
