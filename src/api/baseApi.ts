@@ -14,7 +14,7 @@ export const getApi = async (url: string) => {
 
 export const postApi = async (url: string, body?: any) => {
   try {
-    const data = await axios.post(`${url}`, body, {
+    const data = await axios.post(`http://15.164.215.76:8080/${url}`, body, {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
       },

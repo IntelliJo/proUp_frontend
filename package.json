@@ -1,5 +1,4 @@
 {
-  "proxy": "http://15.164.215.76:8080",
   "private": true,
   "scripts": {
     "dev": "next",
