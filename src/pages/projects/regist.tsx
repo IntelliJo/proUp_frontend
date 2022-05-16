@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 import styled from "styled-components";
 import { useState } from "react";
-import axios from "axios";
+import { postCreateProject } from "../../api/ProjectAPI";
 
 const CenterS = styled.div`
   display: flex;
@@ -96,9 +96,18 @@ const ButtonBase = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
 const ProjectCreate = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+
+  const createProejct = async () => {
+    const { data } = await postCreateProject({
+      name: name,
+      description: description,
+    });
+    console.log(data);
+  };
 
   const registProejct = async (e) => {
     e.preventDefault();
@@ -113,12 +122,7 @@ const ProjectCreate = () => {
     //프로젝트 등록하기
     console.log(name);
     console.log(description);
-    // await axios
-    //   .put("url", { name: name, description: description })
-    //   .then(() => {})
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    createProejct();
   };
 
   return (

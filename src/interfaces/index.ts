@@ -14,10 +14,11 @@ export interface ColorTS {
   color: string;
 }
 
+//프로젝트 타입
 export interface ProjectTS {
   name: string;
-  content: string;
-  info: string;
-  language: string;
-  rating: string;
+  description: string;
+  info?: string;
+  language?: string;
+  rating?: string;
 }

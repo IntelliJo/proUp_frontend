@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <HeaderStyle>
-      <span>proUp</span>
+      <Link href="/">proUp</Link>
       <div>
         <Link href="/projects/regist">프로젝트 등록</Link>
         <span>알림</span>
