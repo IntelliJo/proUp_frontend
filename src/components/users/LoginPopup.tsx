@@ -20,7 +20,7 @@ const LoginPopup = () => {
 
         <LoginButton>로그인</LoginButton>
 
-        <Link href="/register">
+        <Link href="/registerPage">
           <GoRegister>아직 proUp 회원이 아니신가요?</GoRegister>
         </Link>
         <GoFindPw>비밀번호 찾기</GoFindPw>

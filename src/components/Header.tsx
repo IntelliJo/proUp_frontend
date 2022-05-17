@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { theme } from "../styles/theme";
-import LoginPopup from "./LoginPopup";
+import LoginPopup from "./users/LoginPopup";
 import Modal from "./Modal";
 import React, { useState } from "react";
 
@@ -28,9 +28,9 @@ const Header = () => {
   const onClickModalRemove = () => {
     alert("이벤트 실행");
   };
-
   return (
     <HeaderStyle>
+
       <Link href="/">proUp</Link>
       <div>
         <Link href="/projects/regist">프로젝트 등록</Link>
