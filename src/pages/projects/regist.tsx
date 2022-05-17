@@ -114,11 +114,10 @@ const ProjectCreate = () => {
       return;
     }
     //프로젝트 등록하기
-    const { data } = await postCreateProject({
+    await postCreateProject({
       name: name,
       description: description,
     });
-    console.log(data);
     alert("프로젝트가 등록되었습니다.");
     router.push("/");
   };
