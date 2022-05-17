@@ -1,7 +1,8 @@
 import Layout from "../../components/Layout";
 import styled from "styled-components";
 import { useState } from "react";
-import { postCreateProject } from "../../api/ProjectAPI";
+import { postCreateProject, getProjectList } from "../../api/ProjectAPI";
+import { useRouter } from "next/router";
 
 const CenterS = styled.div`
   display: flex;
@@ -100,19 +101,12 @@ const ButtonBase = styled.div`
 const ProjectCreate = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
-  const createProejct = async () => {
-    const { data } = await postCreateProject({
-      name: name,
-      description: description,
-    });
-    console.log(data);
-  };
+  const router = useRouter();
 
   const registProejct = async (e) => {
     e.preventDefault();
     if (name == "") {
-      alert("제목을 입력해주세요.");
+      alert("제목을 입력해주세요!");
       return;
     }
     if (description == "") {
@@ -120,9 +114,13 @@ const ProjectCreate = () => {
       return;
     }
     //프로젝트 등록하기
-    console.log(name);
-    console.log(description);
-    createProejct();
+    const { data } = await postCreateProject({
+      name: name,
+      description: description,
+    });
+    console.log(data);
+    alert("프로젝트가 등록되었습니다.");
+    router.push("/");
   };
 
   return (
