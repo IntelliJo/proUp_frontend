@@ -4,6 +4,7 @@ import { theme } from "../styles/theme";
 import Image from "next/image";
 import java from "../../public/img/java.png";
 import mainImg from "../../public/img/main.png";
+import Link from "next/link";
 
 const SearchStyle = styled.div`
   background-color: ${theme.colors.bgColor};
@@ -107,19 +108,21 @@ const IndexPage = () => (
         </FilterStyle>
         <ProjectsStyle className="projects">
           {/* 프로젝트 시작 */}
-          <ProjectStyle className="project">
-            <InnerStyle>
-              <TitleStyle className="project-Title">
-                <span>Project Name</span>
-                <span>Project Content</span>
-              </TitleStyle>
-              <SubtitleStyle className="project-subTitle">
-                <span>Project Info</span>
-                <span>Programming Language</span>
-                <span>Recuitment</span>
-              </SubtitleStyle>
-            </InnerStyle>
-          </ProjectStyle>
+          <Link href={`/projects/detail/${1}`}>
+            <ProjectStyle className="project">
+              <InnerStyle>
+                <TitleStyle className="project-Title">
+                  <span>Project Name</span>
+                  <span>Project Content</span>
+                </TitleStyle>
+                <SubtitleStyle className="project-subTitle">
+                  <span>Project Info</span>
+                  <span>Programming Language</span>
+                  <span>Recuitment</span>
+                </SubtitleStyle>
+              </InnerStyle>
+            </ProjectStyle>
+          </Link>
         </ProjectsStyle>
       </MainStyle>
     </div>
