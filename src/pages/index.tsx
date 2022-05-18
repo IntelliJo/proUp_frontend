@@ -5,6 +5,8 @@ import Image from "next/image";
 import java from "../../public/img/java.png";
 import mainImg from "../../public/img/main.png";
 import Link from "next/link";
+import { getProjectList } from "../api/ProjectAPI";
+import { ProjectTS } from "../interfaces";
 
 const SearchStyle = styled.div`
   background-color: ${theme.colors.bgColor};
@@ -70,63 +72,76 @@ const SubtitleStyle = styled(TitleStyle)`
   height: 100%;
 `;
 
-const IndexPage = () => (
-  <Layout title="proUp">
-    <div>
-      <SearchStyle className="search">
-        <CenterS>
-          <Image src={mainImg} width={400} height={100} alt="mainImg" />
-          <InputStyle type="text"></InputStyle>
-        </CenterS>
-      </SearchStyle>
-      <MainStyle className="main">
-        <FilterStyle className="filter">
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-          <ListStyle>
-            <Image src={java} width={100} height={100} alt="java" />
-          </ListStyle>
-        </FilterStyle>
-        <ProjectsStyle className="projects">
-          {/* 프로젝트 시작 */}
-          <Link href={`/projects/detail/${1}`}>
-            <ProjectStyle className="project">
-              <InnerStyle>
-                <TitleStyle className="project-Title">
-                  <span>Project Name</span>
-                  <span>Project Content</span>
-                </TitleStyle>
-                <SubtitleStyle className="project-subTitle">
-                  <span>Project Info</span>
-                  <span>Programming Language</span>
-                  <span>Recuitment</span>
-                </SubtitleStyle>
-              </InnerStyle>
-            </ProjectStyle>
-          </Link>
-        </ProjectsStyle>
-      </MainStyle>
-    </div>
-  </Layout>
-);
+const IndexPage = ({ data }) => {
+  return (
+    <Layout title="proUp">
+      <div>
+        <SearchStyle className="search">
+          <CenterS>
+            <Image src={mainImg} width={400} height={100} alt="mainImg" />
+            <InputStyle type="text"></InputStyle>
+          </CenterS>
+        </SearchStyle>
+        <MainStyle className="main">
+          <FilterStyle className="filter">
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+            <ListStyle>
+              <Image src={java} width={100} height={100} alt="java" />
+            </ListStyle>
+          </FilterStyle>
+          <ProjectsStyle className="projects">
+            {/* 프로젝트 시작 */}
+            {data.content?.map((project: ProjectTS) => (
+              <Link href={`/projects/detail/${project.id}`}>
+                <ProjectStyle className="project" key={project.id}>
+                  <InnerStyle>
+                    <TitleStyle className="project-Title">
+                      <span>{project.name}</span>
+                      <span>{project.description}</span>
+                    </TitleStyle>
+                    <SubtitleStyle className="project-subTitle">
+                      <span>Project Info</span>
+                      <span>Programming Language</span>
+                      <span>Recuitment</span>
+                    </SubtitleStyle>
+                  </InnerStyle>
+                </ProjectStyle>
+              </Link>
+            ))}
+          </ProjectsStyle>
+        </MainStyle>
+      </div>
+    </Layout>
+  );
+};
 
 export default IndexPage;
+
+export async function getServerSideProps() {
+  const { data } = await getProjectList();
+  return {
+    props: {
+      data,
+    },
+  };
+}
