@@ -16,8 +16,10 @@ export interface ColorTS {
 
 //프로젝트 타입
 export interface ProjectTS {
+  id?: string;
   name: string;
   description: string;
+  stackList?: [];
   info?: string;
   language?: string;
   rating?: string;

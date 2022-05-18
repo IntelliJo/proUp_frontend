@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { getProjectDetail, postCreateProject } from "../../../api/ProjectAPI";
 import { useRouter } from "next/router";
+import { ProjectTS } from "../../../interfaces";
 
 const CenterS = styled.div`
   display: flex;
@@ -62,7 +63,7 @@ const InputProjectContainer = styled(InputBaseStyle)`
   justify-content: flex-end;
   margin-bottom: 50px;
 `;
-const InputProjectTitle = styled.input`
+const InputProjectTitle = styled.div`
   margin-top: 40px;
   border: none;
   font-size: 1.2em;
@@ -98,30 +99,7 @@ const ButtonBase = styled.div`
   flex-direction: row;
 `;
 
-const ProjectDetail = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const router = useRouter();
-
-  const registProejct = async (e) => {
-    e.preventDefault();
-    if (name == "") {
-      alert("제목을 입력해주세요!");
-      return;
-    }
-    if (description == "") {
-      alert("내용을 입력해주세요.");
-      return;
-    }
-    //프로젝트 등록하기
-    await postCreateProject({
-      name: name,
-      description: description,
-    });
-    alert("프로젝트가 등록되었습니다.");
-    router.push("/");
-  };
-
+const ProjectDetail = ({ data }) => {
   return (
     <Layout title="프로젝트 상세">
       <div>
@@ -135,14 +113,12 @@ const ProjectDetail = () => {
         <form>
           <InputBaseStyle>
             <InputProjectContainer>
-              <InputProjectTitle></InputProjectTitle>
+              <InputProjectTitle>{data.name}</InputProjectTitle>
               <Horizon />
-              <InputProjectContent
-                onChange={(e) => setDescription(e.target.value)}
-              />
+              <InputProjectContent>{data.description}</InputProjectContent>
               <ButtonBase>
-                <NextButton onClick={(e) => registProejct(e)}>수정</NextButton>
-                <NextButton onClick={(e) => registProejct(e)}>삭제</NextButton>
+                <NextButton>수정</NextButton>
+                <NextButton>삭제</NextButton>
               </ButtonBase>
             </InputProjectContainer>
           </InputBaseStyle>
@@ -154,10 +130,8 @@ const ProjectDetail = () => {
 
 export default ProjectDetail;
 
-export async function getServerSideProps() {
-  const route = useRouter();
-  console.log(route);
-  const { data } = await getProjectDetail("1");
+export async function getServerSideProps({ params }) {
+  const { data } = await getProjectDetail(params.id);
   return {
     props: {
       data,
