@@ -1,7 +1,11 @@
 import Layout from "../../../components/Layout";
 import styled from "styled-components";
 import { useState } from "react";
-import { getProjectDetail, postCreateProject } from "../../../api/ProjectAPI";
+import {
+  deleteProject,
+  getProjectDetail,
+  postCreateProject,
+} from "../../../api/ProjectAPI";
 import { useRouter } from "next/router";
 import { ProjectTS } from "../../../interfaces";
 
@@ -99,7 +103,14 @@ const ButtonBase = styled.div`
   flex-direction: row;
 `;
 
-const ProjectDetail = ({ data }) => {
+const ProjectDetail = ({ project }) => {
+  const deleteProjectApi = async (e: any) => {
+    e.preventDefault();
+    const data = await deleteProject(project.id);
+    console.log(data);
+    alert("프로젝트가 삭제되었습니다.");
+  };
+
   return (
     <Layout title="프로젝트 상세">
       <div>
@@ -113,12 +124,14 @@ const ProjectDetail = ({ data }) => {
         <form>
           <InputBaseStyle>
             <InputProjectContainer>
-              <InputProjectTitle>{data.name}</InputProjectTitle>
+              <InputProjectTitle>{project.name}</InputProjectTitle>
               <Horizon />
-              <InputProjectContent>{data.description}</InputProjectContent>
+              <InputProjectContent>{project.description}</InputProjectContent>
               <ButtonBase>
                 <NextButton>수정</NextButton>
-                <NextButton>삭제</NextButton>
+                <NextButton onClick={(e) => deleteProjectApi(e)}>
+                  삭제
+                </NextButton>
               </ButtonBase>
             </InputProjectContainer>
           </InputBaseStyle>
@@ -134,7 +147,7 @@ export async function getServerSideProps({ params }) {
   const { data } = await getProjectDetail(params.id);
   return {
     props: {
-      data,
+      project: data,
     },
   };
 }
