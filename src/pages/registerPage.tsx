@@ -106,6 +106,8 @@ const RegisterPage = () => {
 
   const userId = useInput('')
   const userPw = useInput('')
+  const userAddress = useInput('')
+  const userNick = useInput('')
   const userPhone = useInput('')
   const userEmail = useInput('')
   const authNum = useInput('')
@@ -168,8 +170,10 @@ const RegisterPage = () => {
       )
 
       postJoinUser({
-        id : userId.value,
+        name : userId.value,
         pw : userPw.value,
+        nickname : userNick.value,
+        adr : userAddress.value,
         email : userEmail.value,
         phone: userPhone.value,
         authNum : authNum.value
@@ -200,6 +204,12 @@ const RegisterPage = () => {
             <ButtonWithInput onClick={checkDuplicateId} disabled={isIdCheck}>중복 확인</ButtonWithInput>
           </InputSpanStyle>
           <InputSpanStyle>
+            <InputLabelStyle>닉네임</InputLabelStyle>
+            <br/>
+            <InputWithButton type="text" readOnly={isIdCheck} {...userNick} />
+            <ButtonWithInput onClick={checkDuplicateId} disabled={isIdCheck}>중복 확인</ButtonWithInput>
+          </InputSpanStyle>
+          <InputSpanStyle>
             <InputLabelStyle>비밀번호</InputLabelStyle>
             <InputDetailStyle type="password" {...userPw} />
           </InputSpanStyle>
@@ -212,6 +222,10 @@ const RegisterPage = () => {
           <InputSpanStyle>
             <InputLabelStyle>전화번호</InputLabelStyle>
             <InputDetailStyle type="tel" {...userPhone}/>
+          </InputSpanStyle>
+          <InputSpanStyle>
+            <InputLabelStyle>주소</InputLabelStyle>
+            <InputDetailStyle type="text" {...userAddress} placeholder='모임시 만나기 가까운 위치를 적어주세요 ex)서울, 경기 안양'/>
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>이메일</InputLabelStyle>

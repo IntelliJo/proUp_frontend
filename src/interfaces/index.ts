@@ -25,8 +25,10 @@ export interface ProjectTS {
 
 // 회원가입
 export interface JoinUserTS {
-  id : string;
+  name : string;
+  nickname:string;
   pw : string;
+  adr: string;
   phone : string;
   email : string;
   authNum : string;
@@ -34,6 +36,6 @@ export interface JoinUserTS {
 
 // 로그인
 export interface LoginUserTS {
-  id : string;
+  name : string;
   pw: string;
 }

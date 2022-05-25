@@ -22,7 +22,7 @@ const LoginPopup = () => {
     //TODO : 로그아웃도 문서 나오면 같이 진행
     try {
       const resp = await postLoginUser({
-        id : userId.value,
+        name : userId.value,
         pw : userPw.value
       })
       console.log(resp)
