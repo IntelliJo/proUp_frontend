@@ -27,6 +27,7 @@ const Header = () => {
 
   const onClickModalRemove = () => {
     alert("이벤트 실행");
+    //TODO : 로그인 확인시 로그인 버튼 삭제 및 로그아웃 버튼 추가
   };
   return (
     <HeaderStyle>
@@ -36,6 +37,8 @@ const Header = () => {
         <Link href="/projects/regist">프로젝트 등록</Link>
         <span>알림</span>
         <span onClick={onClickModalOn}>로그인</span>
+        <span >로그아웃</span>
+        {/* TODO : 로그아웃 버튼 클릭시 쿠키 삭제 및 로그인 버튼 추가 */}
         <Modal visible={isActive} closeEvent={onClickModalOff}>
           {/* <LoginPopup closeEvent={onClickModalOff} actionEvent={onClickModalRemove}></LoginPopup> */}
           <LoginPopup></LoginPopup>

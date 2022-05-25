@@ -19,7 +19,6 @@ const LoginPopup = () => {
 
   const loginUser = async () => {
     //TODO : 로그인 API문서 나오면 이후 변경 필요 > 토큰 쿠키에 집어넣는 작업 진행
-    //TODO : 로그아웃도 문서 나오면 같이 진행
     try {
       const resp = await postLoginUser({
         name : userId.value,
