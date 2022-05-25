@@ -1,8 +1,9 @@
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import useInput from "../hooks/useInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Router from "next/router";
+import { getDupulicateId, postJoinUser } from "../api/userApi";
 
 const CenterS = styled.div`
   display: flex;
@@ -121,9 +122,10 @@ const RegisterPage = () => {
     if(checkId.length < 5) {
       alert('아이디는 6자 이상이어야 합니다.')
     } else {
-      const {results}  =  await (await fetch(`/user/${checkId}`)).json();
+      const results = await getDupulicateId(checkId);
       console.log(results)
-      // TODO : API 나온 후 수정 필요
+
+      // TODO : API 나온 후 수정 필요 
       if(results === '' || results === undefined) {
         setIsExist(true);
       } else {
@@ -164,6 +166,15 @@ const RegisterPage = () => {
         'userEmail : ', userEmail.value ,
         'pwCheck  : ', pwCheck
       )
+
+      postJoinUser({
+        id : userId.value,
+        pw : userPw.value,
+        email : userEmail.value,
+        phone: userPhone.value,
+        authNum : authNum.value
+      });
+
       alert('회원가입이 완료되었습니다.')
       Router.push('/'); 
       // window.open('/', '_self') 뭐가 나을지 나중에 확인
@@ -207,6 +218,7 @@ const RegisterPage = () => {
             <br></br>
             <InputWithButton type="text" {...userEmail}/>
             <ButtonWithInput>인증번호 발송</ButtonWithInput>
+            {/* TODO : 인증번호 관련 백앤드와 협의 필요 */}
           </InputSpanStyle>
           <InputSpanStyle>
             <InputLabelStyle>인증번호</InputLabelStyle>

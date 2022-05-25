@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Link from 'next/link';
+import useInput from "../../hooks/useInput";
+import Router from "next/router";
+import { postLoginUser } from "../../api/userApi";
 
 export type LoginModalProps = {
   visible?: boolean;
@@ -10,15 +13,37 @@ export type LoginModalProps = {
 
 // const LoginPopup = ({ closeEvent, children, actionEvent }: LoginModalProps) => {
 const LoginPopup = () => {
+
+  const userId = useInput('')
+  const userPw = useInput('')
+
+  const loginUser = async () => {
+    //TODO : 로그인 API문서 나오면 이후 변경 필요 > 토큰 쿠키에 집어넣는 작업 진행
+    //TODO : 로그아웃도 문서 나오면 같이 진행
+    try {
+      const resp = await postLoginUser({
+        id : userId.value,
+        pw : userPw.value
+      })
+      console.log(resp)
+      alert('환영합니다.')
+      Router.push('/'); 
+
+    } catch (e) {
+      alert('아이디 혹은 비밀번호가 잘못되었습니다.')
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <LoginPopupContainer>
         <LoginPopupTitle>proUp</LoginPopupTitle>
 
-        <InputDetailStyle type="text" placeholder="아이디를 입력해주세요" />
-        <InputDetailStyle type="password" placeholder="비밀번호를 입력해주세요" />
+        <InputDetailStyle type="text" {...userId} placeholder="아이디를 입력해주세요" />
+        <InputDetailStyle type="password" {...userPw} placeholder="비밀번호를 입력해주세요" />
 
-        <LoginButton>로그인</LoginButton>
+        <LoginButton onClick={loginUser}>로그인</LoginButton>
 
         <Link href="/registerPage">
           <GoRegister>아직 proUp 회원이 아니신가요?</GoRegister>

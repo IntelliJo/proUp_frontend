@@ -22,3 +22,18 @@ export interface ProjectTS {
   language?: string;
   rating?: string;
 }
+
+// 회원가입
+export interface JoinUserTS {
+  id : string;
+  pw : string;
+  phone : string;
+  email : string;
+  authNum : string;
+}
+
+// 로그인
+export interface LoginUserTS {
+  id : string;
+  pw: string;
+}
