@@ -1,8 +1,13 @@
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import styled from "styled-components";
 import { useState } from "react";
-import { postCreateProject } from "../../api/ProjectAPI";
+import {
+  deleteProject,
+  getProjectDetail,
+  postCreateProject,
+} from "../../../api/ProjectAPI";
 import { useRouter } from "next/router";
+import { ProjectTS } from "../../../interfaces";
 
 const CenterS = styled.div`
   display: flex;
@@ -62,7 +67,7 @@ const InputProjectContainer = styled(InputBaseStyle)`
   justify-content: flex-end;
   margin-bottom: 50px;
 `;
-const InputProjectTitle = styled.input`
+const InputProjectTitle = styled.div`
   margin-top: 40px;
   border: none;
   font-size: 1.2em;
@@ -98,68 +103,35 @@ const ButtonBase = styled.div`
   flex-direction: row;
 `;
 
-const ProjectCreate = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const router = useRouter();
-
-  const registProejct = async (e) => {
+const ProjectDetail = ({ project }) => {
+  const deleteProjectApi = async (e: any) => {
     e.preventDefault();
-    if (name == "") {
-      alert("제목을 입력해주세요!");
-      return;
-    }
-    if (description == "") {
-      alert("내용을 입력해주세요.");
-      return;
-    }
-    //프로젝트 등록하기
-    await postCreateProject({
-      name: name,
-      description: description,
-    });
-    alert("프로젝트가 등록되었습니다.");
-    router.push("/");
+    const data = await deleteProject(project.id);
+    console.log(data);
+    alert("프로젝트가 삭제되었습니다.");
   };
 
   return (
-    <Layout title="프로젝트 등록">
+    <Layout title="프로젝트 상세">
       <div>
         <CenterS>
           <div>
             <TitleStyle>
-              <TitleFontStyle>프로젝트 등록</TitleFontStyle>
+              <TitleFontStyle>프로젝트 상세</TitleFontStyle>
             </TitleStyle>
           </div>
         </CenterS>
         <form>
           <InputBaseStyle>
-            <InputContainer>
-              <InputDetailStyle
-                type="text"
-                placeholder="스터디에 사용할 언어/프레임워크는 어떤 것인가요?"
-              />
-              <InputButton>선택</InputButton>
-            </InputContainer>
-            <InputContainer>
-              <InputDetailStyle type="text" placeholder="모임비 / 장소" />
-              <InputButton>선택</InputButton>
-            </InputContainer>
-          </InputBaseStyle>
-          <InputBaseStyle>
             <InputProjectContainer>
-              <InputProjectTitle
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                placeholder="프로젝트 제목을 입력해 주세요"
-              />
+              <InputProjectTitle>{project.name}</InputProjectTitle>
               <Horizon />
-              <InputProjectContent
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="프로젝트 내용을 적어주세요"
-              />
+              <InputProjectContent>{project.description}</InputProjectContent>
               <ButtonBase>
-                <NextButton onClick={(e) => registProejct(e)}>등록</NextButton>
+                <NextButton>수정</NextButton>
+                <NextButton onClick={(e) => deleteProjectApi(e)}>
+                  삭제
+                </NextButton>
               </ButtonBase>
             </InputProjectContainer>
           </InputBaseStyle>
@@ -169,4 +141,13 @@ const ProjectCreate = () => {
   );
 };
 
-export default ProjectCreate;
+export default ProjectDetail;
+
+export async function getServerSideProps({ params }) {
+  const { data } = await getProjectDetail(params.id);
+  return {
+    props: {
+      project: data,
+    },
+  };
+}

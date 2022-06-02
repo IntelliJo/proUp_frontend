@@ -4,8 +4,9 @@ import { theme } from "../styles/theme";
 import Image from "next/image";
 import java from "../../public/img/java.png";
 import mainImg from "../../public/img/main.png";
+import Link from "next/link";
 import { getProjectList } from "../api/ProjectAPI";
-import { useEffect, useState } from "react";
+import { ProjectTS } from "../interfaces";
 
 const SearchStyle = styled.div`
   background-color: ${theme.colors.bgColor};
@@ -110,20 +111,22 @@ const IndexPage = ({ data }) => {
           </FilterStyle>
           <ProjectsStyle className="projects">
             {/* 프로젝트 시작 */}
-            {data.content?.map((project) => (
-              <ProjectStyle className="project" key={project.id}>
-                <InnerStyle>
-                  <TitleStyle className="project-Title">
-                    <span>{project.name}</span>
-                    <span>{project.description}</span>
-                  </TitleStyle>
-                  <SubtitleStyle className="project-subTitle">
-                    <span>Project Info</span>
-                    <span>Programming Language</span>
-                    <span>Recuitment</span>
-                  </SubtitleStyle>
-                </InnerStyle>
-              </ProjectStyle>
+            {data.content?.map((project: ProjectTS) => (
+              <Link href={`/projects/detail/${project.id}`}>
+                <ProjectStyle className="project" key={project.id}>
+                  <InnerStyle>
+                    <TitleStyle className="project-Title">
+                      <span>{project.name}</span>
+                      <span>{project.description}</span>
+                    </TitleStyle>
+                    <SubtitleStyle className="project-subTitle">
+                      <span>Project Info</span>
+                      <span>Programming Language</span>
+                      <span>Recuitment</span>
+                    </SubtitleStyle>
+                  </InnerStyle>
+                </ProjectStyle>
+              </Link>
             ))}
           </ProjectsStyle>
         </MainStyle>
