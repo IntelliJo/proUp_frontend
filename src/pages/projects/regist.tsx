@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 import styled from "styled-components";
 import { useState } from "react";
-import { postCreateProject, getProjectList } from "../../api/ProjectAPI";
+import { postCreateProject } from "../../api/ProjectAPI";
 import { useRouter } from "next/router";
 
 const CenterS = styled.div`
