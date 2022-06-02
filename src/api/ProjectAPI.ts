@@ -8,6 +8,11 @@ export const getProjectList = () => {
   const url = `/api/v1/proup/project?page=0&size=5&sort=id`;
   return getApi(url);
 };
+// 프로젝트 상세 조회
+export const getProjectDetail = (id: string) => {
+  const url = `/api/v1/proup/project/${id}`;
+  return getApi(url);
+};
 
 // 프로젝트 등록 api
 export const postCreateProject = (body: ProjectTS) => {
